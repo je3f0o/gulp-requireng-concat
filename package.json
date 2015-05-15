@@ -1,6 +1,6 @@
 {
   "name": "gulp-requireng-concat",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Concatnate requireng files",
   "main": "gulp-requireng-concat.js",
   "repository": {
@@ -10,6 +10,7 @@
   "author": "je3f0o",
   "license": "MIT",
   "dependencies": {
+    "fs-extra": "^0.18.3",
     "pluralize": "^1.1.2"
   }
 }
