@@ -2,7 +2,7 @@
 * File Name  : gulp-requireng-concat.js
 * Purpose    :
 * Created at : 2015-05-15
-* Updated at : 2015-05-16
+* Updated at : 2015-05-17
 * Author     : jeefo
 _._._._._._._._._._._._._._._._._._._._._.*/
 
@@ -19,7 +19,7 @@ module.exports = function(requireng_path) {
 		throw new PluginError("gulp-requireng-concat", "Missing requireng.json file's path for gulp-requireng-concat");
 	}
 
-	requireng_path = path.join(process.cwd(), requireng_path);
+	requireng_path = path.join(process.cwd(), requireng_path, "requireng");
 
 	var builder = new Builder(requireng_path);
 	
