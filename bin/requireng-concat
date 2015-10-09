@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+"use strict";
+
+var getopt  = require("jeefo-getopt"),
+	watcher = require("../src/watcher"),
+	builder = require("../index");
+
+var opt = getopt([
+	["w" , "watch"             , "Watch changes"                      ] ,
+	["m" , "module="           , "Module name"                        ] ,
+	["o" , "output-directory=" , "Output directory"                   ] ,
+	["i" , "module-directory=" , "RequireNG module's input directory" ] ,
+	["h" , "help"              , "TODO: Later ..."                    ]
+]).parse_system();
+
+builder = builder.CreateBuilder(opt);
+builder.build();
+
+if (opt.options.watch) {
+	watcher(builder);
+}
