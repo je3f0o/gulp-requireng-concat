@@ -31,8 +31,9 @@ function is_added (container, module) {
 var Builder = function (parsed_options) {
 	this.user_options              = parsed_options.options;
 	this.current_working_directory = process.cwd();
-	this.requireng_path = path.resolve(this.user_options["module-directory"]) || this.current_working_directory;
-
+	this.requireng_path = this.user_options["module-directory"] || this.current_working_directory;
+	this.requireng_path = path.resolve(this.requireng_path);
+	
 	if (! fse.existsSync(this.requireng_path)) {
 		console.error("requireng_path : " + this.requireng_path);
 		error_messages.exit("Source directory is not found.");

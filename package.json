@@ -1,6 +1,6 @@
 {
   "name": "requireng-concat",
-  "version": "0.1.01",
+  "version": "0.1.02",
   "description": "Concatnate requireng module source files.",
   "main": "index.js",
   "author": "je3f0o",
