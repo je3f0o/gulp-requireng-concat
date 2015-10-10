@@ -1,6 +1,6 @@
 {
   "name": "requireng-concat",
-  "version": "0.1.02",
+  "version": "0.1.03",
   "description": "Concatnate requireng module source files.",
   "main": "index.js",
   "author": "je3f0o",
@@ -9,7 +9,7 @@
   "dependencies": {
     "chokidar": "^1.2.0",
     "fs-extra": "^0.18.3",
-    "jeefo-event-dispatcher": "0.0.0",
+    "jeefo-event-dispatcher": "0.0.1",
     "jeefo-getopt": "0.0.1",
     "pluralize": "^1.1.2"
   }
