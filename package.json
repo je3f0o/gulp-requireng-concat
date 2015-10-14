@@ -6,6 +6,10 @@
   "author": "je3f0o",
   "license": "MIT",
   "bin": "./bin/requireng-concat",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:je3f0o/node-requireng-concat.git"
+  },
   "dependencies": {
     "chokidar": "^1.2.0",
     "fs-extra": "^0.18.3",

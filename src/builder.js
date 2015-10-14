@@ -3,7 +3,7 @@
 * File Name  : builder.js
 * Purpose    :
 * Created at : 2015-05-15
-* Updated at : 2015-10-09
+* Updated at : 2015-10-14
 * Author     : jeefo
 _._._._._._._._._._._._._._._._._._._._._.*/
 
@@ -124,7 +124,7 @@ p.prepare_states = function () {
 	var states  = this.config.states || [];
 
 	this.states          = this.states || [];
-	this.states_variable = "__states" + Date.now();
+	this.states_variable = this.states_variable || "__states" + Date.now();
 
 	states.forEach(function (name) {
 		var state = {
