@@ -102,7 +102,7 @@ let parse_route_manager = builder => {
 			return `${ indent }state("${ file.name }", ${ builder.states_variable }[${ index }])`;
 		});
 
-		return `${ $1 }$stateProvider.\n${ lines.join(".\n") };\n`;
+		return `${ $1 }$stateProvider.\n${ lines.join(".\n") };`;
 	}).trim();
 
 	file.is_parsed = true;
