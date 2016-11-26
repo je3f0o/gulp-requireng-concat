@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+"use strict";
+
+let getopt   = require("jeefo-getopt"),
+	watcher  = require("../src/watcher"),
+	builders = require("../index"),
+	builder;
+
+var opt = getopt([
+	["w" , "watch"             , "Watch changes"                                               ] ,
+	["d" , "debug"             , "Enalbe debugger log"                                         ] ,
+	["m" , "module-name="      , "Module name"                                                 ] ,
+	["M" , "module="           , "is jeefo module or angular ? default is : 'angular' for now" ] ,
+	["o" , "output-directory=" , "Output directory"                                            ] ,
+	["i" , "module-directory=" , "RequireNG module's input directory"                          ] ,
+	["h" , "help"              , "TODO: Later ..."                                             ]
+]).parse_system();
+
+if (opt.options.M === "jeefo") {
+	builder = builders.CreateJeefoBuilder(opt);
+} else {
+	builder = builders.CreateAngularBuilder(opt);
+}
+builder.build();
+
+if (opt.options.debug) {
+	builder.debug = true;
+}
+if (opt.options.watch) {
+	watcher(builder);
+}

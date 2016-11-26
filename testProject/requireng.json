@@ -1,0 +1,23 @@
+{
+    "name": "test",
+    "src_dir": "src",
+    "dist_dir": "dist",
+    "router_manager": "modules/main_module",
+    "libs": [],
+    "states": [
+        "main.app",
+        "main.site",
+        "main.zzz"
+    ],
+    "filters": {},
+    "services": {},
+    "factories": {},
+    "directives": {
+        "Awe": "awe"
+    },
+    "controllers": {
+        "Test": "test",
+        "Z": "z"
+    },
+    "dependencies": []
+}

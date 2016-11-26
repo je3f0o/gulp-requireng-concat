@@ -1,20 +1,21 @@
 {
-  "name": "requireng-concat",
-  "version": "0.1.03",
-  "description": "Concatnate requireng module source files.",
+  "name": "jeefo-module-compiler",
+  "version": "0.0.1",
+  "description": "jeefo module compiler.",
   "main": "index.js",
   "author": "je3f0o",
   "license": "MIT",
-  "bin": "./bin/requireng-concat",
+  "bin": "./bin/jeefo-module-compiler",
   "repository": {
     "type": "git",
     "url": "git@github.com:je3f0o/node-requireng-concat.git"
   },
   "dependencies": {
-    "chokidar": "^1.2.0",
+    "chokidar": "^1.6.1",
     "fs-extra": "^0.18.3",
-    "jeefo-event-dispatcher": "0.0.1",
+    "jeefo": "0.0.5",
     "jeefo-getopt": "0.0.1",
+    "jeefo-parser": "0.0.1",
     "pluralize": "^1.1.2"
   }
 }

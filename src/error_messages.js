@@ -1,5 +1,5 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
-* File Name  : error_messages.js
+* File Name   : error_messages.js
 * Purpose    :
 * Created at : 2015-10-01
 * Updated at : 2015-10-01
@@ -8,6 +8,8 @@ _._._._._._._._._._._._._._._._._._._._._.*/
 
 "use strict";
 
+// Just an idea
+// Multi language error messages
 var event_dispatcher = require("jeefo-event-dispatcher");
 
 function ErrorMessages (messages) {

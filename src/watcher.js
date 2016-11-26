@@ -1,5 +1,5 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
-* File Name  : watcher.js
+* File Name   : watcher.js
 * Purpose    :
 * Created at : 2015-10-09
 * Updated at : 2015-10-09
@@ -8,62 +8,85 @@ _._._._._._._._._._._._._._._._._._._._._.*/
 
 "use strict";
 
-var fse      = require("fs-extra"),
-	path     = require("path"),
-	parser   = require("./parser"),
-	chokidar = require("chokidar");
+let chokidar = require("chokidar");
 
-var chokidar_options = {
-	persistent     : true,
-	ignoreInitial  : false,
-	followSymlinks : true,
+require("jeefo");
 
-	depth            : 99,
-	interval         : 100,
-	alwaysStat       : false,
+let chokidar_options = {
 	usePolling       : true,
-	binaryInterval   : 300,
+	/*
 	awaitWriteFinish : {
 		pollInterval       : 100,
 		stabilityThreshold : 2000
 	},
-
-	ignorePermissionErrors : false,
-	atomic                 : true
+	*/
 };
 
-function watch_modules (builder, options) {
-	var watch_glob = path.join(builder.src_dir, "**", "*.js");
+let get_files = builder => {
+	let files = builder.source_files.map(f => f.path);
+	files = files.concat(builder.state_files.map(f => f.path));
 
-	options.cwd = builder.src_dir;
-	fse.ensureDirSync(options.cwd);
+	if (builder.router) {
+		files.push(builder.router.path);
+	}
 
-	chokidar.watch(watch_glob, options).on("change", function (filepath) {
-		var container = /^states\/.+$/.test(filepath) ? builder.states : builder.modules,
-			module, i, len;
+	return files;
+};
 
-		for (i = 0, len = container.length; i < len; ++i) {
-			if (container[i].relative_path === filepath) {
-				module = container[i];
-				module.is_parsed = false;
-				break;
+let add_files = (builder, watcher) => {
+	watcher.files = get_files(builder);
+	watcher.add(watcher.files);
+};
+
+module.exports = builder => {
+	let watcher = chokidar.watch(builder.requireng_path, chokidar_options).unwatch(builder.requireng_path);
+
+	watcher.on("change", filepath => {
+		console.log(`Changed : ${ filepath }`);
+
+		let is_found = builder.source_files.some(f => {
+			if (f.path === filepath) {
+				f.is_parsed = false;
+				return true;
+			}
+		});
+
+		if (! is_found) {
+			if (builder.router && builder.router.path === filepath) {
+				builder.router.is_parsed = false;
+				is_found = true;
 			}
 		}
 
-		if (module) {
-			console.log("changed:", filepath);
-			parser.parse_module(builder, module);
+		if (! is_found) {
+			builder.state_files.some(f => {
+				if (f.path === filepath) {
+					f.is_parsed = false;
+					return true;
+				}
+			});
 		}
-	});
-}
 
-function watch_config (builder, options) {
-	chokidar.watch(builder.requireng_path, options).on("change", function () {
-		builder.init_config().build();
+		builder.build();
 	});
-}
 
-module.exports = function (builder) {
-	watch_config(builder, chokidar_options);
-	watch_modules(builder, chokidar_options);
+	watcher.on("ready", function () {
+		add_files(builder, watcher);
+
+		chokidar.watch(builder.requireng_path, chokidar_options).on("change", () => {
+			console.log("requireng.json changed.");
+			watcher.unwatch(watcher.files);
+
+			setTimeout(() => {
+				//console.log("Unwatched :", watcher.getWatched());
+
+				// Reconfigure
+				builder.init_config().build();
+
+				add_files(builder, watcher);
+
+				//setTimeout(() => { console.log("Watched :", watcher.getWatched()); });
+			});
+		});
+	});
 };
