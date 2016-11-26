@@ -15,7 +15,7 @@
     "fs-extra": "^0.18.3",
     "jeefo": "0.0.5",
     "jeefo-getopt": "0.0.1",
-    "jeefo-parser": "0.0.2",
+    "jeefo-parser": "0.0.3",
     "pluralize": "^1.1.2"
   }
 }
