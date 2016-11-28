@@ -1,6 +1,6 @@
 {
   "name": "jeefo-module-compiler",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "jeefo module compiler.",
   "main": "index.js",
   "author": "je3f0o",

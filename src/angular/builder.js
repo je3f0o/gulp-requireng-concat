@@ -1,7 +1,7 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 * File Name   : builder.js
 * Created at  : 2016-11-26
-* Updated at  : 2016-11-27
+* Updated at  : 2016-11-28
 * Author      : jeefo
 * Purpose     :
 * Description :
@@ -34,7 +34,7 @@ let error_messages = {
 	}
 };
 
-let wrapper_template = `(function () {
+let wrapper_template = `(function () { "use strict";
 
 GLOBAL
 
