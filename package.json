@@ -1,6 +1,6 @@
 {
   "name": "jeefo-module-compiler",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "jeefo module compiler.",
   "main": "index.js",
   "author": "je3f0o",
@@ -15,6 +15,7 @@
     "fs-extra": "^0.18.3",
     "jeefo": "0.0.5",
     "jeefo-getopt": "0.0.1",
+    "jeefo-parser": "0.0.7",
     "pluralize": "^1.1.2"
   }
 }
