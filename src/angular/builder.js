@@ -1,7 +1,7 @@
 /* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 * File Name   : builder.js
 * Created at  : 2016-11-26
-* Updated at  : 2016-11-28
+* Updated at  : 2016-11-29
 * Author      : jeefo
 * Purpose     :
 * Description :
@@ -201,7 +201,7 @@ class AngularBuilder {
 
 		template = wrapper_template.
 			replace("GLOBAL", `${ global_template };`).
-			replace("SOURCE_CODES", template);
+			replace("SOURCE_CODES", () => template);
 
 		fse.outputFileSync(this.output_file, template);
 	}
